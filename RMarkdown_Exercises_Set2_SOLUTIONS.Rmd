@@ -32,6 +32,7 @@ runtime: shiny
 
 ```{r, echo = FALSE, message = FALSE}
 library(dplyr)
+library(ggplot2)
 numericInput("rows", "How many Flowers?", 5)
 textInput("species", "Which Species?", "virginica")
 

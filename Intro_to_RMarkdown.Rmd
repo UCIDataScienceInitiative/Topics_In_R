@@ -17,6 +17,26 @@ options(htmltools.dir.version = FALSE)
 
 ---
 
+# Needed Packages
+
+- `dplyr`
+
+- `ggplot2`
+
+- `shiny`
+
+- `flexdashboard`
+
+- `plotly`
+
+## Optional Packages
+
+- `biclust`
+
+- `xaringan`
+
+---
+
 # Topics
 
 

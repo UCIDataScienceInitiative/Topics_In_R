@@ -5,11 +5,11 @@
     <meta charset="utf-8">
     <meta name="author" content="Dustin Pluta" />
     <meta name="date" content="2017-02-21" />
-    <link href="libs/remark-css/example.css" rel="stylesheet" />
+    <link href="Intro_to_Shiny_files/remark-css/example.css" rel="stylesheet" />
   </head>
   <body>
     <textarea id="source">
-class: center, middle
+class: center, middle, inverse, title-slide
 
 # Intro to R Shiny
 ## UCI Data Science Initiative
@@ -107,7 +107,26 @@ class: center, middle
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
 "highlightStyle": "github"
-});</script>
+});
+if (window.HTMLWidgets) slideshow.on('showSlide', function (slide) {setTimeout(function() {window.dispatchEvent(new Event('resize'));}, 100)});</script>
 
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+  }
+});
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
   </body>
 </html>
