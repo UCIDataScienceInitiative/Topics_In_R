@@ -137,3 +137,28 @@ movie_index <- grep(input$movie_title, imdb$movie_title)
   selected_x <- log(imdb$budget[movie_index], 10)
   selected_y <- imdb$imdb_score[movie_index]
 ```  
+
+### Using `plotly`
+
+- Install the package `plotly`.  We can include plotly plots using
+
+```{r}
+library(plotly)
+dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
+
+renderPlotly({
+  p <- qplot(carat, price, data=dsamp, colour=clarity)
+  ggplotly(p)  
+})
+```
+
+### Problem 5
+
+5. Redo your previous IMDB data plots to use `plotly`.
+
+    1. Change `renderPlot` to `renderPlotly`.
+    
+    2. Assign the `ggplot2` graph object to a variable, call it `p`.
+    
+    3. Add the line `ggplotly(p)` at the end of the `renderPlotly` block.
+
