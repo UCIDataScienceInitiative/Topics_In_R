@@ -1,0 +1,164 @@
+---
+title: "Iris Example"
+author: "DSI Workshop"
+output: 
+  html_document:
+    toc: true
+    theme: spacelab
+  pdf_document: default
+---
+
+***
+
+# First Section: Iris Violin Plot
+
+## Subsection: Original Code
+
+* Let's revisit the violin plot of the Iris data from the `ggplot2` section of the workshop.
+
+* The code can be embedded in the R Markdown document.  When the document is compiled, the code will be executed (`eval = TRUE` in the Rmd source) and the resulting plot will be included in the document.
+
+* The code itself is also printed because of the option `echo = TRUE` (also in the Rmd source).
+
+* The original code from Lingge was:
+
+```{r echo = TRUE, eval = TRUE, warning = FALSE, fig.width = 5, fig.height = 2.5, fig.align = 'center'}
+library(ggplot2)
+ggplot(data = iris, aes(x = Species, y = Petal.Width)) +
+  geom_violin(aes(fill = Species)) +
+  labs(title = 'Iris Petal Width')
+```
+
+## Using Chunk Options
+
+Some important chunk options and [default values] are:
+
+* `eval [TRUE]`: Should the chunk be evaluated
+* `echo [TRUE]`: Should the chunk be printed
+* `warning [TRUE]`: Should warnings be printed
+* `error [FALSE]`: Should messages be printed
+* `tidy [FALSE]`: Should the code be reformatted for ease of display
+* `results ["markup"]`: Possible values are "markup", "asis", "hold", "hide"
+* `cache [FALSE]`: Should results be cached for future render
+* `comment ["##"]`: Prefix character when displaying results
+* `fig.width [7]`: Width in inches for plots from chunk
+* `fig.height [7]`: Height in inches for plots from chunk
+* `fig.align ["right"]`: Alignment of figures
+
+<small>[Adapted from the R Markdown Cheat Sheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)</small>
+
+### Subsubsection: Violin Plot
+
+Change the code chunk options so that the code is not displayed and the plot is larger.
+
+```{r echo = FALSE, eval = TRUE, warning = FALSE, fig.width = 7, fig.height = 4.5}
+library(ggplot2)
+ggplot(data = iris, aes(x = Species, y = Petal.Width)) +
+  geom_violin(aes(fill = Species)) +
+  labs(title = 'Iris Petal Width')
+```
+
+***
+
+# Images
+
+#### Format to embed images: `![](path/to/smallorb.png)`
+
+![](Figures/iris.png)
+
+<br><br>
+
+#### To have more control over display options, we can use a code chunk:
+
+```{r iris_image, out.width = "100px"}
+knitr::include_graphics('Figures/iris.png')
+```
+
+<br><br>
+
+#### Alternatively, we could use HTML to embed the image.
+
+`<img src="Figures/iris.png" alt="Iris" style="align:right;width:604px;height:128px;">`
+
+<img src="Figures/iris.png" alt="Iris" style="align:right;width:604px;height:128px;">
+<br><br>
+
+***
+
+# Some Other R Markdown Features
+
+## Displaying Math
+
+We can easily display mathematical symbols and equations using $\LaTeX$ style formating:
+
+* Here's an example of an inline equation: $x^2 + y^2 = z^2$.
+
+* We can use many nice $\LaTeX$ options such as Greek letters ($\phi, \alpha, \Sigma$) and math notation ($\int, \infty, \|\cdot\|, \nabla$)
+
+* We can also use display math formats: 
+
+$$\sum_{i = 0}^{\infty} \frac{\lambda^x e^{-\lambda}}{x!} = 1$$
+
+***
+
+<br><br>
+
+## Inline Code
+
+Similar to math, code can be included inline as well: Two plus two equals `r 2 + 2`.
+
+* The language must be specified for the code to be executed,
+
+  + Displayed only: `levels(iris$Species)`
+  
+  + Evaluated: `r levels(iris$Species)`
+  
+  
+***
+
+<br><br>
+
+## Displaying Data
+
+#### Display data as it would be printed from the `R` console:
+
+```{r display_raw}
+head(iris)
+```
+
+#### Display data in Table format
+
+##### Using `knitr` and `kable`
+
+```{r knitr_table}
+knitr::kable(
+  head(iris), 
+  caption = "A knitr kable."
+)
+```
+
+##### Using `xtable` package
+
+```{r results = "asis"}
+print(xtable::xtable(head(iris), caption = "Table with xtable"), type = "html", html.table.attributes = "border=1")
+```
+
+##### Using `stargazer` package
+
+```{r results = "asis"}
+stargazer::stargazer(head(iris), type = "html", title = "Stargazer Table")
+```
+
+***
+
+<br><br>
+
+## Other Tips and Tools
+
+* Can choose a theme for the page style or can provide your own css file
+
+* Can use inline <strong>HTML</strong> to <i>format text</i> and include things like links: <a href="https://http://rmarkdown.rstudio.com/rmarkdown_websites.html#overview">More on Building Websites with R Markdown</a>
+
+* The `bookdown` package can be used to typeset a book using R Markdown.
+
+* Presentations can be created in R Markdown as well using the output document types: `ioslides_presentation`, `slidy_presentation`, `beamer_presentation`, or `xaringan`

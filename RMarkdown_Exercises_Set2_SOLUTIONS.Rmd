@@ -1,0 +1,259 @@
+---
+title: "Interactive R Markdown"
+author: "Dustin Pluta"
+date: "May 12, 2017"
+output: 
+  html_document:
+    toc: true
+    toc_float:
+      collapsed: false
+      smooth_scroll: true
+    toc_depth: 3
+    theme: spacelab
+runtime: shiny
+---
+
+
+# Interactive Basics
+
+1. [Here is a link to the RStudio guide to interactive R Markdown documents.](http://rmarkdown.rstudio.com/authoring_shiny.html?version=1.0.136&mode=desktop#overview)
+
+2. By leveraging the power of [Shiny](http://shiny.rstudio.com/), we can make R Markdown documents interactive!
+
+  * [Shiny Widget Gallery](http://shiny.rstudio.com/gallery/widget-gallery.html)
+  * [Shiny App Gallery](https://shiny.rstudio.com/gallery/)
+
+***
+***
+
+<br><br>
+
+## Iris Examples
+
+```{r, echo = FALSE, message = FALSE}
+library(dplyr)
+numericInput("rows", "How many Flowers?", 5)
+textInput("species", "Which Species?", "virginica")
+
+renderTable({
+  head(filter(iris, Species == input$species), input$rows)
+})
+```
+
+<br><br>
+
+```{r, echo = FALSE}
+library(ggplot2)
+library(png)
+radioButtons("radio", label = h4("Choose a Plot"),
+    choices = list("Violin Plot" = 1, "Scatterplot" = 2, "Iris" = 3), selected = 1)
+
+renderPlot(
+  if (input$radio == 1) {
+    ggplot(data=iris, aes(x=Species, y=Petal.Width)) +
+      geom_violin(aes(fill=Species)) + geom_point()
+  } else if (input$radio == 2) {
+    ggplot(iris, aes(Petal.Length, Petal.Width, color =        Species)) + geom_point()
+  } else if (input$radio == 3) {
+    rasterImage(readPNG('Figures/iris.png'), xleft = 0.1, xright = 1, ytop = 1, ybottom = 0)
+  }
+)
+```
+
+***
+***
+
+<br><br>
+
+## Exercises with the IMDB Data
+
+Let's analyze the IMDB data interactively.
+
+First, read the data as before:
+
+```{r read_imdb, results = "hide"}
+imdb <- read.csv("Data/movie_metadata.csv", stringsAsFactors = FALSE)
+colnames(imdb)
+```
+
+***
+
+<br><br>
+
+### Problem 1
+
+1. Draw a histogram of the log movie budgets and include a slider to let you select the number of bins.  The example [here](http://rmarkdown.rstudio.com/authoring_shiny.html?version=1.0.136&mode=desktop#inputs_and_outputs) shows an example.  Use the base `hist()` for this part instead of `ggplot`.
+
+```{r, echo = FALSE}
+library(magrittr)
+sliderInput("bins", "Number of bins:", min = 1, max = 50, value = 30)
+
+renderPlot({
+  bins <- seq(2, 10, length.out = input$bins + 1)
+  x <- filter(imdb, !is.na(budget)) %>%
+    transmute(log_budget = log(budget, 10)) %>%
+    select(log_budget) %$%
+    hist(log_budget, breaks = input$bins, col = 'darkgray', border = 'white')
+})
+```
+
+***
+
+### Problem 2
+
+2. Revisit the plot of Nicolas Cage movies by year and IMDB score.  Generate this plot and include `numericInput` boxes to select the year range to be plotted.  Bonus points if you rewrite using `dplyr` functions.
+
+Here is the code from the `ggplot` section:
+
+```{r nic_cage, echo = TRUE, eval = FALSE}
+cage <- imdb[imdb$actor_1_name == 'Nicolas Cage', ]
+cage$actor_1_name <- as.character(cage$actor_1_name)
+ggplot(data=cage, aes(x=title_year, y=imdb_score, label=movie_title)) +
+  geom_point(alpha=0.5) + 
+  geom_text(fontface='italic', size=2, vjust=1, nudge_y=0.1) + 
+  geom_smooth()
+```
+
+__Solution__
+
+```{r cage, echo = FALSE}
+numericInput("min_year", h4("Min Year"), 1984)
+numericInput("max_year", h4("Max Year"), 2017)
+
+renderPlot({
+cage <- filter(imdb, actor_1_name == 'Nicolas Cage') %>% 
+  filter(title_year > input$min_year & title_year < input$max_year)
+cage$actor_1_name <- as.character(cage$actor_1_name)
+ggplot(data=cage, aes(x=title_year, y=imdb_score, label=movie_title)) +
+  geom_point(alpha=0.5) + 
+  geom_text(fontface='italic', size=2, vjust=1, nudge_y=0.1) + geom_smooth()
+})
+```
+
+***
+
+<br><br>
+
+### Problem 3
+
+3. Add a `textInput` to allow the choice of actor to plot for the previous plot.
+
+__Solution__
+
+```{r P3, echo = FALSE}
+
+numericInput("P3_min_year", h4("Min Year"), 1984)
+numericInput("P3_max_year", h4("Max Year"), 2017)
+textInput("actor", h4("Choose Actor"), "Nicolas Cage")
+
+renderPlot({
+cage <- filter(imdb, actor_1_name == input$actor) %>% 
+  filter(title_year > input$P3_min_year & title_year < input$P3_max_year)
+cage$actor_1_name <- as.character(cage$actor_1_name)
+ggplot(data=cage, aes(x=title_year, y=imdb_score, label=movie_title)) +
+  geom_point(alpha=0.5) + 
+  geom_text(fontface='italic', size=2, vjust=1, nudge_y=0.1) + geom_smooth()
+})
+```
+
+***
+
+<br><br>
+
+### Problem 4
+
+4. Modify the following code to allow a movie name to be entered for highlighting using a `textInput` box.
+
+```{r message = FALSE, warning = FALSE}
+ggplot(data=imdb, aes(x=log10(budget), y=imdb_score)) +
+geom_point(aes(colour=gross), alpha=0.5) +
+geom_smooth() +
+scale_color_continuous(name='Box office gross', breaks = c(2e+8, 4e+8, 6e+8),
+labels = c('2 million', '4 million', '6 million'),
+low = 'blue', high = 'red') +
+annotate('point', x=8.3, y=8.3, colour='red', size=4) +
+annotate('text', x=8.3, y=8.6, label='Toy Story 3', fontface='italic', size=6, angle=30) +
+theme_bw() +
+labs(title='IMDB Movies') +
+theme(plot.title=element_text(size=rel(2), colour='blue')) +
+theme(legend.position=c(0.9, 0.2))
+```
+
+```{r, message = FALSE, warning = FALSE}
+
+textInput("movie_title", h4("Enter Movie Title"), "Toy Story 3")
+
+renderPlot({
+  movie_index <- grep(input$movie_title, imdb$movie_title)
+  selected_x <- log(imdb$budget[movie_index], 10)
+  selected_y <- imdb$imdb_score[movie_index]
+  
+  ggplot(data=imdb, aes(x=log10(budget), y=imdb_score)) +
+  geom_point(aes(colour=gross), alpha=0.5) +
+  geom_smooth() +
+  scale_color_continuous(name="Box Office Gross", breaks = c(2e+8, 4e+8, 6e+8),
+  labels = c('2 million', '4 million', '6 million'),
+  low = 'blue', high = 'red') +
+  annotate('point', x=selected_x, selected_y, colour='red', size=6) +
+  annotate('text', x=selected_x, y=selected_y, label=imdb$movie_title[movie_index], fontface='bold', size=10) +
+  theme_bw() +
+  labs(title='IMDB Movies') +
+  theme(plot.title=element_text(size=rel(2), colour='blue')) +
+  theme(legend.position=c(0.9, 0.2))
+})
+```
+
+
+### Using `plotly`
+
+- Install the package `plotly`.  We can include plotly plots using
+
+```{r}
+library(plotly)
+dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
+
+renderPlotly({
+  p <- qplot(carat, price, data=dsamp, colour=clarity)
+  ggplotly(p)  
+})
+```
+
+### Problem 5
+
+5. Redo your previous IMDB data plots to use `plotly`.
+
+    1. Change `renderPlot` to `renderPlotly`.
+    
+    2. Assign the `ggplot2` graph object to a variable, call it `p`.
+    
+    3. Add the line `ggplotly(p)` at the end of the `renderPlotly` block.
+
+```{r, message = FALSE, warning = FALSE}
+library(plotly)
+textInput("movie_title", h4("Enter Movie Title"), "Toy Story 3")
+
+renderPlotly({
+  movie_index <- grep(input$movie_title, imdb$movie_title)
+  selected_x <- log(imdb$budget[movie_index], 10)
+  selected_y <- imdb$imdb_score[movie_index]
+  
+  p <- ggplot(data=imdb, aes(x=log10(budget), y=imdb_score)) +
+  geom_point(aes(colour=gross), alpha=0.5) +
+  geom_smooth() +
+  scale_color_continuous(name="Box Office Gross", breaks = c(2e+8, 4e+8, 6e+8),
+  labels = c('2 million', '4 million', '6 million'),
+  low = 'blue', high = 'red') +
+  annotate('point', x=selected_x, selected_y, colour='red', size=6) +
+  annotate('text', x=selected_x, y=selected_y, label=imdb$movie_title[movie_index], fontface='bold', size=10) +
+  theme_bw() +
+  labs(title='IMDB Movies') +
+  theme(plot.title=element_text(size=rel(2), colour='blue')) +
+  theme(legend.position=c(0.9, 0.2))
+  
+  ggplotly(p)
+})
+```
+
+
+
+

@@ -1,0 +1,43 @@
+---
+title: "R Markdown Exercises"
+author: "Dustin Pluta"
+date: "February 20, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Exercises
+
+<strong> Edit this R Markdown document to include your solutions.  Experiment with formatting and the many available options.</strong><br><br>
+
+### Iris Data
+
+1. Use `ggplot` to display the scatterplot the `iris` data with $x$-axis `Petal.Length` and $y$-axis `Petal.Width`.  Color the points according to the species.
+
+
+2. 
+  + Add a horizontal rule between this problem and the previous problem using "***" on its own line, with newlines above and below.
+  
+  + Add a link to the iris data set on the UCI Machine learning repository and a brief description of the data.
+
+3. Use `dplyr` to select the petal length and petal width of only the Virginica species, and output this data as a table.
+
+### IMDB Data
+
+4. Read in the IMDB Data and print the column names.
+
+`imdb <- read.csv("~/Data/movie_metadata.csv")`
+
+
+5. 
+  + Use `dplyr` to create a new data frame called `imdb_selected` with just movie score and $\log_{10}($budget).
+  + Create a scatterplot of this data using `ggplot`
+
+
+6. Use `dplyr` to find the average budgets of Nicolas Cage, Leonardo DiCaprio, and Bruce Willis movies and display these values in a table.  Hint: `%in%` is useful for filtering on multiple strings.
+  
+  
+

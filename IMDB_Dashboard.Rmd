@@ -1,0 +1,105 @@
+---
+title: "Exploring Movie Data"
+author: "UCI DSI Shiny Workshop"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: rows
+    social: menu
+    source_code: embed
+runtime: shiny
+---
+
+```{r setup, include = FALSE}
+library(dplyr)
+library(plotly)
+```
+
+```{r global, include=FALSE}
+# load data in 'global' chunk so it can be shared by all users of the dashboard
+imdb <- read.csv("Data/movie_metadata.csv", stringsAsFactors = FALSE)
+colnames(imdb)
+```
+
+
+Inputs {.sidebar}
+-----------------------------------------------------------------------
+
+```{r, echo = FALSE}
+checkboxGroupInput("genres", label = h3("Choose Genres"), 
+    choices = list("Action" = "Action", "Drama" = "Drama", "Comedy" = "Comedy"),
+    selected = "Action")
+renderPrint({ input$genres })
+
+
+textInput("movie_title", h4("Enter Movie Title"), "Toy Story 3")
+
+textInput("first_actor", h4("First Actor"), "Bruce Willis")
+textInput("second_actor", h4("Second Actor"), "Nicolas Cage")
+```
+
+### Exercise
+
+- Add additional checkboxes for more genres or change the input to a drop down select box
+
+- Experiment with adding additional widgets to modify the plot at the right
+
+
+
+Row {data-height=650}
+-----------------------------------------------------------------------
+
+### IMDB Movie Data
+    
+
+```{r, message = FALSE, warning = FALSE}
+renderPlotly({
+  plot_data <- imdb %>% filter(genres %in% input$genres)
+  movie_index <- grep(input$movie_title, imdb$movie_title)
+  selected_x <- log(imdb$budget[movie_index], 10)
+  selected_y <- imdb$imdb_score[movie_index]
+  
+  p <- ggplot(data=plot_data, aes(x=log10(budget), y=imdb_score)) +
+  geom_point(aes(colour=gross), alpha=0.5) +
+  geom_smooth() +
+  scale_color_continuous(name="Box Office Gross", breaks = c(2e+8, 4e+8, 6e+8),
+  labels = c('2 million', '4 million', '6 million'),
+  low = 'blue', high = 'red') +
+  annotate('point', x=selected_x, selected_y, colour='red', size=6) +
+  annotate('text', x=selected_x, y=selected_y, label=imdb$movie_title[movie_index], fontface='bold', size=10) +
+  theme_bw() +
+  theme(plot.title=element_text(size=rel(2), colour='blue')) +
+  theme(legend.position=c(0.9, 0.2))
+  
+  ggplotly(p)
+})
+```
+
+
+Row {.tabset}
+-----------------------------------------------------------------------
+
+
+### Exercise
+    
+- Update the title for this tab to "Actor Comparison"
+
+- Modify the boxplot code below to compare distribution of IMDB scores for the chosen actors
+    
+```{r}
+renderPlot(
+  ggplot(data = imdb, aes(actor_1_name, imdb_score)) + 
+    geom_boxplot()
+)
+```
+
+### Movie Budgets
+
+```{r}
+# only display table for values in cluster 4
+renderTable(
+  imdb %>% filter(genres %in% input$genres) %>%
+    select(movie_title, budget, imdb_score)
+)
+```
+
+   

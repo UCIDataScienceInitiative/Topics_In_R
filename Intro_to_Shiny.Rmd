@@ -1,0 +1,101 @@
+---
+title: "Intro to R Shiny"
+subtitle: "UCI Data Science Initiative"
+author: "Dustin Pluta"
+date: "21 February 2017"
+output: 
+  xaringan::moon_reader:
+    seal: yes
+    
+    nature:
+      highlightStyle: github
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+# Topics
+
+1. Interactive Markdown Documents
+
+2. Overview of Shiny Widgets
+
+3. Buliding a Dashboard
+
+
+---
+
+# Some Resources for R
+
+* [shiny Cheat Sheet](http://shiny.rstudio.com/images/shiny-cheatsheet.pdf)
+
+* [`dplyr` Cheat Sheet](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
+
+* [R Markdown Cheat Sheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
+
+* [R Markdown Tutorial](http://www.jacolienvanrij.com/Tutorials/tutorialMarkdown.html)
+
+* [knitr](https://yihui.name/knitr/)
+
+* [Data Carpentry Lessons for R](http://www.datacarpentry.org/R-ecology-lesson/)
+
+* [dplyr Tutorial](http://genomicsclass.github.io/book/pages/dplyr_tutorial.html)
+
+* [Advanced R (by Hadley Wickham)](http://adv-r.had.co.nz/)
+
+* [R for Data Science (by Grolemund and Wickham)](http://r4ds.had.co.nz/)
+
+---
+
+# Intro to Shiny
+
+- Shiny is an R Studio package for building interactive Web Apps and can be combined with R Markdown to create a variety of interactive documents
+
+- Shiny allows you to design a UI completely in R
+
+- Shiny apps can be hosted on the web!
+
+    + [shinyappsio](https://www.shinyapps.io/)
+    
+    + [UCI DSI Shiny Server](shiny.datascience.uci.edu)
+
+
+---
+
+# Interactive Markdown Documents
+
+- [Interactive R Markdown Guide](http://rmarkdown.rstudio.com/authoring_shiny.html)
+
+- [Shiny Widget Gallery](https://shiny.rstudio.com/gallery/widget-gallery.html)
+
+---
+
+# Interactive Markdown Documents
+
+
+- See __Interactive R Markdown Example File__
+
+- Then try __R Markdown Exercise Set 2__
+
+---
+
+# Flexdashboard
+
+- First install packages:
+
+    + `shiny`
+    
+    + `flexdashboard`
+
+- Example 1: [Bi-clustering](https://jjallaire.shinyapps.io/shiny-biclust/)
+
+- Example 2: [Gotta Catch'em All](http://jkunst.com/flexdashboard-highcharter-examples/pokemon/)
+
+- [Flexdashboard Gallery](http://rmarkdown.rstudio.com/flexdashboard/examples.html)
+
+- See file __Biclusetring Dashboard__
+
+- Then try things out with __IMDB Dashboard__
+
+

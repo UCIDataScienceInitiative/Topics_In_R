@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Intro to R Markdown</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Dustin Pluta" />
+    <meta name="date" content="2017-05-12" />
+    <link href="libs/remark-css/example.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle
+
+# Intro to R Markdown
+## UCI Data Science Initiative
+### Dustin Pluta
+### May 12, 2017
+
+---
+
+
+
+
+---
+
+# Topics
+
+
+1. Intro to R Markdown
+
+2. Basic Syntax and Formatting
+
+4. Advanced Formatting
+
+5. Interactive Markdown Documents
+
+
+---
+
+# Some Resources for R
+
+* [`dplyr` Cheat Sheet](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
+
+* [R Markdown Cheat Sheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
+
+* [R Markdown Tutorial](http://www.jacolienvanrij.com/Tutorials/tutorialMarkdown.html)
+
+* [knitr](https://yihui.name/knitr/)
+
+* [Data Carpentry Lessons for R](http://www.datacarpentry.org/R-ecology-lesson/)
+
+* [dplyr Tutorial](http://genomicsclass.github.io/book/pages/dplyr_tutorial.html)
+
+* [Advanced R (by Hadley Wickham)](http://adv-r.had.co.nz/)
+
+* [R for Data Science (by Grolemund and Wickham)](http://r4ds.had.co.nz/)
+
+---
+
+# Intro to R Markdown
+
+* __R Markdown__ is an implementation of the _Markdown_ markup language 
+
+* Markdown is a versatile tool that makes it easy to make readable scientific documents in a variety of formats
+
+* R markdown is actively developed and supported by the RStudio team, which means:
+
+  + RStudio has many tools and features to make R Markdown flexible and easy to use
+
+  + New R Markdown features and packages are frequently released
+  
+---
+
+# Intro to R Markdown
+
+* __R For Data Science__ on the intent of R Markdown:
+
+_R Markdown files are designed to be used in three ways:_
+
+1. _For communicating to decision makers, who want to focus on the conclusions, not the code behind the analysis._
+
+2. _For collaborating with other data scientists (including future you!), who are interested in both your conclusions, and how you reached them (i.e. the code)._
+
+3. _As an environment in which to do data science, as a modern day lab notebook where you can capture not only what you did, but also what you were thinking._
+
+---
+
+# Required Packages
+
+* `ggplot2`
+
+* `tidyverse`
+
+* `knitr`
+
+* `stargazer`
+
+* `png`
+
+---
+
+# Getting Started with R Markdown
+
+* R Markdown files end in `.Rmd`
+
+* Create a new R markdown document in RStudio:
+
+  + `File &gt; New File &gt; R Markdown...`
+  
+.center[&lt;img src="Figures/Open_New_RMarkdown.png" height="400"&gt;]
+  
+---
+
+# Getting Started with R Markdown
+
+.center[&lt;img src="Figures/Open_New_RMarkdown2.png" height="400"&gt;]
+
+  
+---
+
+# Getting Started with R Markdown
+
+* The default R Markdown template gives some examples of basic R Markdown features
+
+.center[&lt;img src="Open_New_RMarkdown3.png" height="500"&gt;]
+
+
+---
+
+# Getting Started with R Markdown
+
+.center[&lt;img src="EDIT1_Open_New_RMarkdown3.png" height="600"&gt;]
+
+
+---
+
+# Getting Started with R Markdown
+
+.center[&lt;img src="EDIT2_Open_New_RMarkdown3.png" height="600"&gt;]
+
+
+---
+
+# Getting Started with R Markdown
+
+.center[&lt;img src="EDIT3_Open_New_RMarkdown3.png" height="600"&gt;]
+
+
+---
+
+# Getting Started with R Markdown
+
+.center[&lt;img src="EDIT4_Open_New_RMarkdown3.png" height="600"&gt;]
+
+
+---
+
+# Getting Started with R Markdown
+
+.center[&lt;img src="EDIT5_Open_New_RMarkdown3.png" height="600"&gt;]
+
+
+---
+
+# Getting Started with R Markdown
+
+.center[&lt;img src="EDIT6_Open_New_RMarkdown3.png" height="600"&gt;]
+
+
+---
+
+# Getting Started with R Markdown
+
+.center[&lt;img src="EDIT7_Open_New_RMarkdown3.png" height="600"&gt;]
+
+
+---
+
+# Getting Started with R Markdown
+
+* Compile or "knit" the R Markdown document to the desired format (either html, pdf, or Word document)
+
+.center[&lt;img src="EDIT_Open_New_RMarkdown4.png" height="300"&gt;]
+
+
+
+---
+
+# Getting Started with R Markdown
+
+.center[&lt;img src="Practice_First_Knit.png" height="400"&gt;]
+
+---
+
+# Getting Started with R Markdown
+
+* Let's modify the plot to include a title, and make the points blue.
+
+.center[&lt;img src="EDIT_Open_New_RMarkdown5.png" height="300"&gt;]
+
+
+---
+
+# Getting Started with R Markdown
+
+
+```r
+plot(pressure, main = "Plot Title", pch = 23, col = "blue", bg = "blue")
+```
+
+&lt;img src="Intro_to_RMarkdown_files/figure-html/pressure-1.png" width="672" /&gt;
+
+---
+
+# Practice With R Markdown
+
+1. R Markdown Basic Example: Shows simple plot with `cars` data set.
+
+2. R Markdown Exercise Set 1: More examples and some exercises to try on the Iris and IMDB data sets.
+
+
+---
+
+# More on R Markdown Syntax
+
+[R Markdown Cheat Sheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
+
+
+---
+
+# More R Markdown Features
+
+1. Presentations: beamer, ioslides, slidy, xaringan
+
+2. knitr
+
+3. Blogdown
+
+4. Bookdown
+
+5. Interactive Documents 
+
+
+---
+
+# Presentations
+
+- You can easily create academic presentations using 4 different formats
+
+    + beamer (pdf)
+    
+    + ioslides (html)
+    
+    + slidy (html)
+    
+    + xaringan (html)
+    
+.center[&lt;img src="RMarkdown_Presentation.png" height="300"&gt;]
+
+
+---
+
+# knitr
+
+- R Markdown can make full use of Latex through the `knitr` package
+
+- `knitr` lets you easily display mathematical formulas and other Latex formatting in your Markdown document
+
+- For example, math can be inserted inline like `\(\alpha^2 + \beta^2 = \gamma^2\)` or in display mode:
+
+`$$Y = X \beta + \varepsilon$$`
+
+`$$\int_{\mathbb{R}} \sum_{i = 1}^n \nabla \ell_i d\mu$$`
+
+---
+
+# Blogdown
+
+[Making a Website Using Blogdown, Hugo, and GitHub pages](https://proquestionasker.github.io/blog/Making_Site)/
+
+[Example Blogdown Blog: Simply Statistics](https://simplystatistics.org)
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github"
+});</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+  }
+});
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
