@@ -15,8 +15,6 @@ output:
 options(htmltools.dir.version = FALSE)
 ```
 
----
-
 # Needed Packages
 
 - `dplyr`
@@ -28,6 +26,8 @@ options(htmltools.dir.version = FALSE)
 - `flexdashboard`
 
 - `plotly`
+
+- `stargazer`
 
 ## Optional Packages
 
@@ -99,20 +99,6 @@ _R Markdown files are designed to be used in three ways:_
 
 ---
 
-# Required Packages
-
-* `ggplot2`
-
-* `tidyverse`
-
-* `knitr`
-
-* `stargazer`
-
-* `png`
-
----
-
 # Getting Started with R Markdown
 
 * R Markdown files end in `.Rmd`
@@ -136,56 +122,56 @@ _R Markdown files are designed to be used in three ways:_
 
 * The default R Markdown template gives some examples of basic R Markdown features
 
-.center[<img src="Open_New_RMarkdown3.png" height="500">]
+.center[<img src="Figures/Open_New_RMarkdown3.png" height="500">]
 
 
 ---
 
 # Getting Started with R Markdown
 
-.center[<img src="EDIT1_Open_New_RMarkdown3.png" height="600">]
+.center[<img src="Figures/EDIT1_Open_New_RMarkdown3.png" height="600">]
 
 
 ---
 
 # Getting Started with R Markdown
 
-.center[<img src="EDIT2_Open_New_RMarkdown3.png" height="600">]
+.center[<img src="Figures/EDIT2_Open_New_RMarkdown3.png" height="600">]
 
 
 ---
 
 # Getting Started with R Markdown
 
-.center[<img src="EDIT3_Open_New_RMarkdown3.png" height="600">]
+.center[<img src="Figures/EDIT3_Open_New_RMarkdown3.png" height="600">]
 
 
 ---
 
 # Getting Started with R Markdown
 
-.center[<img src="EDIT4_Open_New_RMarkdown3.png" height="600">]
+.center[<img src="Figures/EDIT4_Open_New_RMarkdown3.png" height="600">]
 
 
 ---
 
 # Getting Started with R Markdown
 
-.center[<img src="EDIT5_Open_New_RMarkdown3.png" height="600">]
+.center[<img src="Figures/EDIT5_Open_New_RMarkdown3.png" height="600">]
 
 
 ---
 
 # Getting Started with R Markdown
 
-.center[<img src="EDIT6_Open_New_RMarkdown3.png" height="600">]
+.center[<img src="Figures/EDIT6_Open_New_RMarkdown3.png" height="600">]
 
 
 ---
 
 # Getting Started with R Markdown
 
-.center[<img src="EDIT7_Open_New_RMarkdown3.png" height="600">]
+.center[<img src="Figures/EDIT7_Open_New_RMarkdown3.png" height="600">]
 
 
 ---
@@ -194,7 +180,7 @@ _R Markdown files are designed to be used in three ways:_
 
 * Compile or "knit" the R Markdown document to the desired format (either html, pdf, or Word document)
 
-.center[<img src="EDIT_Open_New_RMarkdown4.png" height="300">]
+.center[<img src="Figures/EDIT_Open_New_RMarkdown4.png" height="300">]
 
 
 
@@ -202,7 +188,7 @@ _R Markdown files are designed to be used in three ways:_
 
 # Getting Started with R Markdown
 
-.center[<img src="Practice_First_Knit.png" height="400">]
+.center[<img src="Figures/Practice_First_Knit.png" height="500">]
 
 ---
 
@@ -210,7 +196,7 @@ _R Markdown files are designed to be used in three ways:_
 
 * Let's modify the plot to include a title, and make the points blue.
 
-.center[<img src="EDIT_Open_New_RMarkdown5.png" height="300">]
+.center[<img src="Figures/EDIT_Open_New_RMarkdown5.png" height="400">]
 
 
 ---
@@ -225,17 +211,12 @@ plot(pressure, main = "Plot Title", pch = 23, col = "blue", bg = "blue")
 
 # Practice With R Markdown
 
-1. R Markdown Basic Example: Shows simple plot with `cars` data set.
-
-2. R Markdown Exercise Set 1: More examples and some exercises to try on the Iris and IMDB data sets.
-
-
----
-
-# More on R Markdown Syntax
 
 [R Markdown Cheat Sheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
 
+1. R Markdown Basic Example: Shows simple plot with `cars` data set.
+
+2. R Markdown Exercise Set 1: More examples and some exercises to try on the Iris and IMDB data sets.
 
 ---
 
@@ -266,7 +247,7 @@ plot(pressure, main = "Plot Title", pch = 23, col = "blue", bg = "blue")
     
     + xaringan (html)
     
-.center[<img src="RMarkdown_Presentation.png" height="300">]
+.center[<img src="Figures/RMarkdown_Presentation.png" height="300">]
 
 
 ---

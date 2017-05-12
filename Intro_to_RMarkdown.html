@@ -5,11 +5,11 @@
     <meta charset="utf-8">
     <meta name="author" content="Dustin Pluta" />
     <meta name="date" content="2017-05-12" />
-    <link href="libs/remark-css/example.css" rel="stylesheet" />
+    <link href="Intro_to_RMarkdown_files/remark-css/example.css" rel="stylesheet" />
   </head>
   <body>
     <textarea id="source">
-class: center, middle
+class: center, middle, inverse, title-slide
 
 # Intro to R Markdown
 ## UCI Data Science Initiative
@@ -20,6 +20,26 @@ class: center, middle
 
 
 
+
+# Needed Packages
+
+- `dplyr`
+
+- `ggplot2`
+
+- `shiny`
+
+- `flexdashboard`
+
+- `plotly`
+
+- `stargazer`
+
+## Optional Packages
+
+- `biclust`
+
+- `xaringan`
 
 ---
 
@@ -85,20 +105,6 @@ _R Markdown files are designed to be used in three ways:_
 
 ---
 
-# Required Packages
-
-* `ggplot2`
-
-* `tidyverse`
-
-* `knitr`
-
-* `stargazer`
-
-* `png`
-
----
-
 # Getting Started with R Markdown
 
 * R Markdown files end in `.Rmd`
@@ -122,56 +128,56 @@ _R Markdown files are designed to be used in three ways:_
 
 * The default R Markdown template gives some examples of basic R Markdown features
 
-.center[&lt;img src="Open_New_RMarkdown3.png" height="500"&gt;]
+.center[&lt;img src="Figures/Open_New_RMarkdown3.png" height="500"&gt;]
 
 
 ---
 
 # Getting Started with R Markdown
 
-.center[&lt;img src="EDIT1_Open_New_RMarkdown3.png" height="600"&gt;]
+.center[&lt;img src="Figures/EDIT1_Open_New_RMarkdown3.png" height="600"&gt;]
 
 
 ---
 
 # Getting Started with R Markdown
 
-.center[&lt;img src="EDIT2_Open_New_RMarkdown3.png" height="600"&gt;]
+.center[&lt;img src="Figures/EDIT2_Open_New_RMarkdown3.png" height="600"&gt;]
 
 
 ---
 
 # Getting Started with R Markdown
 
-.center[&lt;img src="EDIT3_Open_New_RMarkdown3.png" height="600"&gt;]
+.center[&lt;img src="Figures/EDIT3_Open_New_RMarkdown3.png" height="600"&gt;]
 
 
 ---
 
 # Getting Started with R Markdown
 
-.center[&lt;img src="EDIT4_Open_New_RMarkdown3.png" height="600"&gt;]
+.center[&lt;img src="Figures/EDIT4_Open_New_RMarkdown3.png" height="600"&gt;]
 
 
 ---
 
 # Getting Started with R Markdown
 
-.center[&lt;img src="EDIT5_Open_New_RMarkdown3.png" height="600"&gt;]
+.center[&lt;img src="Figures/EDIT5_Open_New_RMarkdown3.png" height="600"&gt;]
 
 
 ---
 
 # Getting Started with R Markdown
 
-.center[&lt;img src="EDIT6_Open_New_RMarkdown3.png" height="600"&gt;]
+.center[&lt;img src="Figures/EDIT6_Open_New_RMarkdown3.png" height="600"&gt;]
 
 
 ---
 
 # Getting Started with R Markdown
 
-.center[&lt;img src="EDIT7_Open_New_RMarkdown3.png" height="600"&gt;]
+.center[&lt;img src="Figures/EDIT7_Open_New_RMarkdown3.png" height="600"&gt;]
 
 
 ---
@@ -180,7 +186,7 @@ _R Markdown files are designed to be used in three ways:_
 
 * Compile or "knit" the R Markdown document to the desired format (either html, pdf, or Word document)
 
-.center[&lt;img src="EDIT_Open_New_RMarkdown4.png" height="300"&gt;]
+.center[&lt;img src="Figures/EDIT_Open_New_RMarkdown4.png" height="300"&gt;]
 
 
 
@@ -188,7 +194,7 @@ _R Markdown files are designed to be used in three ways:_
 
 # Getting Started with R Markdown
 
-.center[&lt;img src="Practice_First_Knit.png" height="400"&gt;]
+.center[&lt;img src="Figures/Practice_First_Knit.png" height="500"&gt;]
 
 ---
 
@@ -196,7 +202,7 @@ _R Markdown files are designed to be used in three ways:_
 
 * Let's modify the plot to include a title, and make the points blue.
 
-.center[&lt;img src="EDIT_Open_New_RMarkdown5.png" height="300"&gt;]
+.center[&lt;img src="Figures/EDIT_Open_New_RMarkdown5.png" height="400"&gt;]
 
 
 ---
@@ -214,17 +220,12 @@ plot(pressure, main = "Plot Title", pch = 23, col = "blue", bg = "blue")
 
 # Practice With R Markdown
 
-1. R Markdown Basic Example: Shows simple plot with `cars` data set.
-
-2. R Markdown Exercise Set 1: More examples and some exercises to try on the Iris and IMDB data sets.
-
-
----
-
-# More on R Markdown Syntax
 
 [R Markdown Cheat Sheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
 
+1. R Markdown Basic Example: Shows simple plot with `cars` data set.
+
+2. R Markdown Exercise Set 1: More examples and some exercises to try on the Iris and IMDB data sets.
 
 ---
 
@@ -255,7 +256,7 @@ plot(pressure, main = "Plot Title", pch = 23, col = "blue", bg = "blue")
     
     + xaringan (html)
     
-.center[&lt;img src="RMarkdown_Presentation.png" height="300"&gt;]
+.center[&lt;img src="Figures/RMarkdown_Presentation.png" height="300"&gt;]
 
 
 ---
@@ -283,7 +284,8 @@ plot(pressure, main = "Plot Title", pch = 23, col = "blue", bg = "blue")
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
 "highlightStyle": "github"
-});</script>
+});
+if (window.HTMLWidgets) slideshow.on('showSlide', function (slide) {setTimeout(function() {window.dispatchEvent(new Event('resize'));}, 100)});</script>
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
