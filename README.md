@@ -2,5 +2,5 @@
 
 Intro to ggplot2: http://rpubs.com/collnell/ggplot2  
 
-http://rpubs.com/collnell/burrito_wrangle  
+Data manipulation with dplyr:  http://rpubs.com/collnell/burrito_wrangle  
 
